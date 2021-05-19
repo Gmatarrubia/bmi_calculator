@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+name: Flutter Web
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+jobs:
+  build:
+    name: Build Web
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1.5.0
+        with:
+          channel: 'dev'
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      - run: flutter create --platforms=web .
+      - run: sed -i 's|<base href="/">|<base href="/${{ github.event.repository.name }}/#/">|' web/index.html
+      - run: flutter build web --release
+      - run: |
+          cd build/web
+          git init
+          git config --global user.email gonzalomatarrubia@hotmail.com
+          git config --global user.name gmatarrubia
+          git status
+          git remote add origin https://gmatarrubia:${{secrets.GITHUB_TOKEN}}@github.com/gmatarrubia/${{ github.event.repository.name }}.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
