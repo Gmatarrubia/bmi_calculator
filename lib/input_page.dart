@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const Color activeColorValueCard = Color(0xFF1D1E33);
+const Color colorButtom = Color(0xFFEB1555);
+const double heightButtomContainer = 70.0;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -14,23 +18,28 @@ class _InputPageState extends State<InputPage> {
       ),
       body: SafeArea(
         child: Column(
-          children: <Widget> [
+          children: <Widget>[
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(Color(0xFF1D1E33)),
-                  ValueCard(Color(0xFF1D1E33)),
+                  ValueCard(activeColorValueCard),
+                  ValueCard(activeColorValueCard),
                 ],
               ),
             ),
-            ValueCard(Color(0xFF1D1E33)),
+            ValueCard(activeColorValueCard),
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(Color(0xFF1D1E33)),
-                  ValueCard(Color(0xFF1D1E33)),
+                  ValueCard(activeColorValueCard),
+                  ValueCard(activeColorValueCard),
                 ],
               ),
+            ),
+            Container(
+              color: colorButtom,
+              height: heightButtomContainer,
+              width: double.infinity,
             ),
           ],
         ),

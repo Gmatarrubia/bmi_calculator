@@ -4,14 +4,16 @@ import 'input_page.dart';
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
+
+  static const int primeColor = 0xFF0A0E21;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF0A0E21),
-        backgroundColor: Color(0xFF0A0E21),
-        scaffoldBackgroundColor: Color(0xFF0A0E21),
-        accentColor: Color(0xFFB71C1C),
+        primaryColor: Color(primeColor),
+        backgroundColor: Color(primeColor),
+        scaffoldBackgroundColor: Color(primeColor),
+        accentColor: Color(primeColor),
       ),
       home: InputPage(),
     );
