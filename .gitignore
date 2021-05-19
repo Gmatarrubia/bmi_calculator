@@ -28,6 +28,12 @@
 .pub/
 build/
 
+#Test folder
+**/test/*
+
+# Web related
+**/web/*
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
