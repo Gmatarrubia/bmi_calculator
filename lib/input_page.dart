@@ -73,14 +73,20 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   ValueCard(
-                      color: kActiveColorValueCard,
-                      childCard: TwoButtonsCard(
-                        label: "Peso",
-                        units: "kg",
-                      )),
+                    color: kActiveColorValueCard,
+                    childCard: TwoButtonsCard(
+                      label: "Peso",
+                      units: "kg",
+                      initialValue: 70,
+                    ),
+                  ),
                   ValueCard(
                     color: kActiveColorValueCard,
-                    childCard: null,
+                    childCard: TwoButtonsCard(
+                      label: "Edad",
+                      units: "",
+                      initialValue: 30,
+                    ),
                   ),
                 ],
               ),

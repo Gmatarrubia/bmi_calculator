@@ -6,15 +6,20 @@ import 'icon_button.dart';
 class TwoButtonsCard extends StatefulWidget {
   final String label;
   final String units;
+  final int initialValue;
 
-  TwoButtonsCard({@required this.label, this.units});
+  TwoButtonsCard({@required this.label, this.units, this.initialValue});
 
   @override
-  _TwoButtonsCardState createState() => _TwoButtonsCardState();
+  _TwoButtonsCardState createState() => _TwoButtonsCardState(initialValue);
 }
 
 class _TwoButtonsCardState extends State<TwoButtonsCard> {
-  int weight = 70;
+  int cardValue = 70;
+
+  _TwoButtonsCardState(int initialValue) {
+    cardValue = initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
           textBaseline: TextBaseline.alphabetic,
           children: [
             Text(
-              weight.toString(),
+              cardValue.toString(),
               style: kBigTextSyle,
             ),
             Text(
@@ -46,7 +51,7 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               icon: FontAwesomeIcons.minus,
               buttonFunction: () {
                 setState(() {
-                  weight--;
+                  cardValue--;
                 });
               },
             ),
@@ -57,7 +62,7 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               icon: FontAwesomeIcons.plus,
               buttonFunction: () {
                 setState(() {
-                  weight++;
+                  cardValue++;
                 });
               },
             ),
