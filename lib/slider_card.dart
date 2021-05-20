@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-class SliderCard extends StatelessWidget {
+class SliderCard extends StatefulWidget {
   final String label;
-  //TODO: Refactor attributes that shouldn't be final
-  final double cardValue = 160;
+
   SliderCard({@required this.label});
+
+  @override
+  _SliderCardState createState() => _SliderCardState();
+}
+
+class _SliderCardState extends State<SliderCard> {
+  double cardValue = 180.0;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class SliderCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            label,
+            widget.label,
             style: kMyAppTextStyle,
           ),
           Row(
@@ -31,19 +37,25 @@ class SliderCard extends StatelessWidget {
               ),
             ],
           ),
-          Slider(
-            value: cardValue,
-            min: 120.0,
-            max: 230.0,
-            onChanged: (double newValue) {
-              //TODO: allow this:
-              //setState( () {
-              print("New value is: $newValue");
-              //cardValue = newValue;
-              //}),
-            },
-            activeColor: Colors.amber,
-            inactiveColor: Colors.amber[100],
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              activeTrackColor: Colors.amber,
+              inactiveTrackColor: Colors.amber[100],
+              thumbColor: Colors.amber,
+              overlayColor: Colors.amber.withAlpha(0x29),
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+              overlayShape: RoundSliderOverlayShape(overlayRadius: 20),
+            ),
+            child: Slider(
+              value: cardValue,
+              min: 120.0,
+              max: 230.0,
+              onChanged: (double newValue) {
+                setState(() {
+                  cardValue = newValue.roundToDouble();
+                });
+              },
+            ),
           ),
         ],
       ),
