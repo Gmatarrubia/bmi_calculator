@@ -65,7 +65,7 @@ class _InputPageState extends State<InputPage> {
             ValueCard(
               color: kActiveColorValueCard,
               childCard: SliderCard(
-                label: "PESO",
+                label: "Altura",
               ),
             ),
             Expanded(
