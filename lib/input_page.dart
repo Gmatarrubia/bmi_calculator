@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon_card.dart';
+import 'value_card.dart';
 
 const Color activeColorValueCard = Color(0xFF1D1E33);
+const Color inactiveColorValueCard = Color(0xFF111328);
 const Color colorButtom = Color(0xFFEB1555);
 const double heightButtomContainer = 70.0;
 
@@ -10,11 +15,16 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveColorValueCard;
+  Color femaleCardColor = inactiveColorValueCard;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora de IMC"),
+        title: Center(
+          child: Text("Calculadora de IMC"),
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -22,17 +32,38 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(activeColorValueCard),
-                  ValueCard(activeColorValueCard),
+                  ValueCard(
+                    color: maleCardColor,
+                    childCard: IconCard(
+                      icon: FontAwesomeIcons.mars,
+                      textCard: "MALE",
+                    ),
+                  ),
+                  ValueCard(
+                    color: femaleCardColor,
+                    childCard: IconCard(
+                      icon: FontAwesomeIcons.venus,
+                      textCard: "FEMALE",
+                    ),
+                  ),
                 ],
               ),
             ),
-            ValueCard(activeColorValueCard),
+            ValueCard(
+              color: activeColorValueCard,
+              childCard: null,
+            ),
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(activeColorValueCard),
-                  ValueCard(activeColorValueCard),
+                  ValueCard(
+                    color: activeColorValueCard,
+                    childCard: null,
+                  ),
+                  ValueCard(
+                    color: activeColorValueCard,
+                    childCard: null,
+                  ),
                 ],
               ),
             ),
@@ -42,24 +73,6 @@ class _InputPageState extends State<InputPage> {
               width: double.infinity,
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ValueCard extends StatelessWidget {
-  final Color color;
-  ValueCard(this.color);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          color: this.color,
-          borderRadius: BorderRadius.circular(10.0),
         ),
       ),
     );
