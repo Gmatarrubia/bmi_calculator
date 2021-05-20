@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class IconCard extends StatelessWidget {
   final IconData icon;
@@ -20,9 +21,7 @@ class IconCard extends StatelessWidget {
         ),
         Text(
           textCard,
-          style: TextStyle(
-            color: Colors.amberAccent,
-          ),
+          style: kMyAppTextStyle,
         ),
       ],
     );
