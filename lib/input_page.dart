@@ -6,6 +6,7 @@ import 'value_card.dart';
 import 'slider_card.dart';
 import 'constants.dart';
 import 'two_button_card.dart';
+import 'results_page.dart';
 
 enum Gender { male, female }
 
@@ -91,12 +92,24 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              height: kHeightButtomContainer,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: kPrimeColorButton,
-                borderRadius: BorderRadius.circular(10.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ResultsPage()));
+              },
+              child: Container(
+                child: Center(
+                  child: Text(
+                    "CALCULAR",
+                    style: kBigTextSyle,
+                  ),
+                ),
+                height: kHeightButtomContainer,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: kPrimeColorButton,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
           ],
