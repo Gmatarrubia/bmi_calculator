@@ -9,6 +9,8 @@ const Color inactiveColorValueCard = Color(0xFF111328);
 const Color colorButtom = Color(0xFFEB1555);
 const double heightButtomContainer = 70.0;
 
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -17,6 +19,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveColorValueCard;
   Color femaleCardColor = inactiveColorValueCard;
+  Gender selectedGender = Gender.male;
 
   @override
   Widget build(BuildContext context) {
@@ -32,37 +35,63 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(
-                    color: maleCardColor,
-                    childCard: IconCard(
-                      icon: FontAwesomeIcons.mars,
-                      textCard: "MALE",
+                  Expanded(
+                    child: GestureDetector(
+                      child: ValueCard(
+                        color: selectedGender == Gender.male
+                            ? activeColorValueCard
+                            : inactiveColorValueCard,
+                        childCard: IconCard(
+                          icon: FontAwesomeIcons.mars,
+                          textCard: "MALE",
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      },
                     ),
                   ),
-                  ValueCard(
-                    color: femaleCardColor,
-                    childCard: IconCard(
-                      icon: FontAwesomeIcons.venus,
-                      textCard: "FEMALE",
+                  Expanded(
+                    child: GestureDetector(
+                      child: ValueCard(
+                        color: selectedGender == Gender.female ? activeColorValueCard : inactiveColorValueCard,
+                        childCard: IconCard(
+                          icon: FontAwesomeIcons.venus,
+                          textCard: "FEMALE",
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
                     ),
                   ),
                 ],
               ),
             ),
-            ValueCard(
-              color: activeColorValueCard,
-              childCard: null,
+            Expanded(
+              child: ValueCard(
+                color: activeColorValueCard,
+                childCard: null,
+              ),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
-                  ValueCard(
-                    color: activeColorValueCard,
-                    childCard: null,
+                  Expanded(
+                    child: ValueCard(
+                      color: activeColorValueCard,
+                      childCard: null,
+                    ),
                   ),
-                  ValueCard(
-                    color: activeColorValueCard,
-                    childCard: null,
+                  Expanded(
+                    child: ValueCard(
+                      color: activeColorValueCard,
+                      childCard: null,
+                    ),
                   ),
                 ],
               ),
