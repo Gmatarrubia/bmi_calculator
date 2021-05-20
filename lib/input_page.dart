@@ -5,6 +5,7 @@ import 'icon_card.dart';
 import 'value_card.dart';
 import 'slider_card.dart';
 import 'constants.dart';
+import 'two_button_card.dart';
 
 enum Gender { male, female }
 
@@ -72,9 +73,11 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   ValueCard(
-                    color: kActiveColorValueCard,
-                    childCard: null,
-                  ),
+                      color: kActiveColorValueCard,
+                      childCard: TwoButtonsCard(
+                        label: "Peso",
+                        units: "kg",
+                      )),
                   ValueCard(
                     color: kActiveColorValueCard,
                     childCard: null,
@@ -86,7 +89,7 @@ class _InputPageState extends State<InputPage> {
               height: kHeightButtomContainer,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: kColorButtom,
+                color: kPrimeColorButton,
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
