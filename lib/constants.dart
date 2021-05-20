@@ -8,3 +8,8 @@ const double kHeightButtomContainer = 70.0;
 const TextStyle kMyAppTextStyle = TextStyle(
   color: Colors.amberAccent,
 );
+
+const TextStyle kBigTextSyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.w900,
+);
