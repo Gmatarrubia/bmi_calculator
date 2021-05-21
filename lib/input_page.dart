@@ -4,9 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_card.dart';
 import 'value_card.dart';
 import 'slider_card.dart';
+import 'bottom_button.dart';
 import 'constants.dart';
 import 'two_button_card.dart';
 import 'results_page.dart';
+import 'imc_calculator.dart';
 
 enum Gender { male, female }
 
@@ -17,6 +19,17 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.male;
+
+  int weight = 70;
+  int height = 180;
+
+  void updateWeight(int newWeight) {
+    weight = newWeight;
+  }
+
+  void updateHeight(int newHeight) {
+    height = newHeight;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +81,10 @@ class _InputPageState extends State<InputPage> {
               color: kActiveColorValueCard,
               childCard: SliderCard(
                 label: "Altura",
+                initialValue: height,
+                onUpdate: (height) {
+                  updateHeight(height);
+                },
               ),
             ),
             Expanded(
@@ -78,7 +95,10 @@ class _InputPageState extends State<InputPage> {
                     childCard: TwoButtonsCard(
                       label: "Peso",
                       units: "kg",
-                      initialValue: 70,
+                      initialValue: weight,
+                      onUpdate: (weight) {
+                        updateWeight(weight);
+                      },
                     ),
                   ),
                   ValueCard(
@@ -92,25 +112,16 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
+            BottomButton(
+              label: "CALCULAR",
+              ontap: () {
+                ImcCalculator calc = ImcCalculator(
+                  weight: weight.toDouble(),
+                  height: height.toDouble(),
+                );
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultsPage()));
+                    MaterialPageRoute(builder: (context) => ResultsPage(calc)));
               },
-              child: Container(
-                child: Center(
-                  child: Text(
-                    "CALCULAR",
-                    style: kBigTextSyle,
-                  ),
-                ),
-                height: kHeightButtomContainer,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: kPrimeColorButton,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
             ),
           ],
         ),

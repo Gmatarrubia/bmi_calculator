@@ -3,15 +3,22 @@ import 'constants.dart';
 
 class SliderCard extends StatefulWidget {
   final String label;
+  final Function(int) onUpdate;
+  final int initialValue;
 
-  SliderCard({@required this.label});
+  SliderCard(
+      {@required this.label, @required this.initialValue, this.onUpdate});
 
   @override
-  _SliderCardState createState() => _SliderCardState();
+  _SliderCardState createState() => _SliderCardState(initialValue);
 }
 
 class _SliderCardState extends State<SliderCard> {
   double cardValue = 180.0;
+
+  _SliderCardState(int initialValue) {
+    cardValue = initialValue.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,7 @@ class _SliderCardState extends State<SliderCard> {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                cardValue.toString(),
+                cardValue.toStringAsFixed(1),
                 style: kBigTextSyle,
               ),
               Text(
@@ -53,6 +60,7 @@ class _SliderCardState extends State<SliderCard> {
               onChanged: (double newValue) {
                 setState(() {
                   cardValue = newValue.roundToDouble();
+                  widget.onUpdate(cardValue.toInt());
                 });
               },
             ),

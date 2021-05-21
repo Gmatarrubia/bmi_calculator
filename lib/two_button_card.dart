@@ -7,8 +7,10 @@ class TwoButtonsCard extends StatefulWidget {
   final String label;
   final String units;
   final int initialValue;
+  final Function(int) onUpdate;
 
-  TwoButtonsCard({@required this.label, this.units, this.initialValue});
+  TwoButtonsCard(
+      {@required this.label, this.units, this.initialValue, this.onUpdate});
 
   @override
   _TwoButtonsCardState createState() => _TwoButtonsCardState(initialValue);
@@ -52,6 +54,7 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               buttonFunction: () {
                 setState(() {
                   cardValue--;
+                  widget.onUpdate(cardValue);
                 });
               },
             ),
@@ -63,6 +66,7 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               buttonFunction: () {
                 setState(() {
                   cardValue++;
+                  widget.onUpdate(cardValue);
                 });
               },
             ),
