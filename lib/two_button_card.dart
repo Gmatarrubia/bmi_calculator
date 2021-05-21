@@ -54,7 +54,9 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               buttonFunction: () {
                 setState(() {
                   cardValue--;
-                  widget.onUpdate(cardValue);
+                  if (widget.onUpdate != null) {
+                    widget.onUpdate(cardValue);
+                  }
                 });
               },
             ),
@@ -66,7 +68,9 @@ class _TwoButtonsCardState extends State<TwoButtonsCard> {
               buttonFunction: () {
                 setState(() {
                   cardValue++;
-                  widget.onUpdate(cardValue);
+                  if (widget.onUpdate != null) {
+                    widget.onUpdate(cardValue);
+                  }
                 });
               },
             ),
